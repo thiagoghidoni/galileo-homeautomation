@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+    <!--
+  * Copyright © 2012-2015, Intel Corporation. All rights reserved.
+  * Please see the included README.md file for license terms and conditions.
+  -->
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="galleria/galleria.classic.css">
+        <link rel="stylesheet" type="text/css" href="media_button_bar/css/media_button_bar.css">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="app_framework/2.1/css/af.ui.min.css">
+        <link rel="stylesheet" type="text/css" href="app_framework/2.1/css/icons.min.css">
+        <title>Blank App Designer Cordova Web App Project Template</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+        <!--
+  * The "meta viewport" tag (below) helps your app size appropriately to a device's ideal viewport.
+  * Note that Windows device viewports work better when initialized using the @viewport CSS rule.
+  * For a quick overview of "meta viewport" and @viewport, see this article:
+  *   http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag
+  * To see how it works, try your app on a real device with and without a "meta viewport" tag.
+  * Additional useful references include:
+  *   http://www.quirksmode.org/mobile/viewports.html
+  *   http://www.quirksmode.org/mobile/metaviewport/devices.html
+  *   https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
+-->
+
+        <!-- <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1"> -->
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=2"> -->
+
+        <style>
+            /* following three (cascaded) are equivalent to above three meta viewport statements */
+            /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+            /* see http://dev.w3.org/csswg/css-device-adapt/ */
+                @-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }          @viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
+                @-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   @viewport { user-zoom: fixed ; min-zoom: 100% ; }
+                /*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
+        </style>
+
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+
+        <!-- Recommended location for your JavaScript libraries -->
+        <!-- These library references (below) are just examples to give you the general idea... -->
+        <!-- <script src="lib/mc/hammer.js"></script> -->
+        <!-- <script src="lib/ft/fastclick.js"></script> -->
+
+        <!--
+  * cordova.js is a phantom lib for "Cordova HTML5 web app," it does nothing in a "Standard HTML5 web app"
+  * Seeing a "Failed to load resource: net::ERR_FILE_NOT_FOUND" message caused by this "cordova.js" script?
+  * The cordova.js script is required if you convert your "Standard HTML5" project into a "Cordova" project.
+  * You can safely ignore the error or comment out this line if you will not be developing a Cordova app.
+-->
+        <script src="cordova.js" id="xdkJScordova_"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script src="js/app.js"></script>
+        <!-- for your event code, see README and file comments for details -->
+        <script src="js/init-app.js"></script>
+        <!-- for your init code, see README and file comments for details -->
+        <script src="xdk/init-dev.js"></script>
+        <script src="cordova.js"></script>
+        <!-- normalizes device and document ready events, see file for details -->
+        <!--            
+            You may substitute jQuery for the App Framework selector library.
+            See http://app-framework-software.intel.com/documentation.php#afui/afui_jquery
+        -->
+        <script type="application/javascript" src="app_framework/2.1/appframework.js"></script>
+        <script type="application/javascript" src="app_framework/2.1/appframework.ui.js" data-ver="1"></script>
+        <script type="application/javascript" src="js/index_user_scripts.js"></script>
+        <script type="application/javascript" src="app_framework/pageChangeRepeater.js"></script>
+
+        <!--            
+            You may substitute jQuery for the App Framework selector library.
+            See http://app-framework-software.intel.com/documentation.php#afui/afui_jquery
+        -->
+        <script type="application/javascript" src="justgage/js/raphael.min.js"></script>
+        <script type="application/javascript" src="justgage/js/justgage.min.js"></script>
+        <script type="application/javascript" src="justgage/gauges.js"></script>
+        <script type="application/javascript" src="xdk/ad/af_subpage.js"></script>
+        <!--            
+            You may substitute jQuery for the App Framework selector library.
+            See http://app-framework-software.intel.com/documentation.php#afui/afui_jquery
+        -->
+        <script type="application/javascript" src="lib/jquery.min.js"></script>
+        <script type="application/javascript" src="galleria/galleria-1.3.6.min.js"></script>
+        <script type="application/javascript" src="galleria/galleria.classic.min.js"></script>
+        <script type="application/javascript" src="galleria/galleria-startup.js"></script>
+        <script type="application/javascript" src="app_framework/themeRelease.js"></script>
+    <script type="text/javascript">
+        var onDeviceReady=function(){                             // called when Cordova is ready
+           if( window.Cordova && navigator.splashscreen ) {     // Cordova API detected
+                navigator.splashscreen.hide() ;                 // hide splash screen
+            }
+        } ;
+        document.addEventListener("deviceready", onDeviceReady, false) ;
+    </script>
+    </head>
+
+    <body id="afui" class="bb">
+
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work above -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+        <header class="wrapping-col wrap-element uib_w_1" data-uib="app_framework/header" data-ver="2" id="home_header">
+            <h1>Home Automation</h1>
+        </header>
+        <header class="wrapping-col wrap-element uib_w_6 with-back" data-uib="app_framework/header" data-ver="2" id="ilumi_header"><a class="button backButton">Back</a>
+            <h1>Iluminação</h1>
+        </header>
+        <header class="wrapping-col wrap-element uib_w_9 with-back" data-uib="app_framework/header" data-ver="2" id="temp_header"><a class="button backButton">Back</a>
+            <h1>Temperatura</h1>
+        </header>
+        <header class="wrapping-col wrap-element uib_w_13 with-back" data-uib="app_framework/header" data-ver="2" id="garage_switch"><a class="button backButton">Back</a>
+            <h1>Garagem</h1>
+        </header>
+        <header class="wrapping-col wrap-element uib_w_17 with-back" data-uib="app_framework/header" data-ver="2" id="af-header-0"><a class="button backButton">Back</a>
+            <h1>Alarme</h1>
+        </header>
+        <div class="uwrap" id="content">
+            <div class="upage vertical-col left panel" id="mainpage" data-header="home_header" data-footer="af-footer-3">
+                <br>
+                <figure class="figure-align">
+                    <img src="images/138877-topper-icon-home.jpg">
+                    <figcaption data-position="bottom"></figcaption>
+                </figure>
+                <br>
+                <ul class="list widget uib_w_2 d-margins" data-uib="app_framework/listview" data-ver="1">
+                    <li class="widget uib_w_3" data-uib="app_framework/listitem" data-ver="1" id="ilumin_menu"><a class="icon lamp" href="#iluminacao" data-transition="slide">Iluminação</a>
+                    </li>
+                    <li class="widget uib_w_4" data-uib="app_framework/listitem" data-ver="1" id="temp_menu"><a class="icon cloud" href="#temperatura" data-transition="slide">Temperatura</a>
+                    </li>
+                    <li class="widget uib_w_5" data-uib="app_framework/listitem" data-ver="1" id="garagem_menu"><a class="icon up" href="#garagem" data-transition="slide">Garagem</a>
+                    </li>
+                </ul>
+                <ul class="list widget uib_w_20 d-margins" data-uib="app_framework/listview" data-ver="1">
+                    <li class="widget uib_w_21" data-uib="app_framework/listitem" data-ver="1" id="alarme_menu"><a class="icon key" href="#alarme" data-transition="slide">Alarme</a>
+                    </li>
+                </ul>
+                <div class="widget uib_w_29 scale-image d-margins" data-uib="media/img" data-ver="0">
+
+                </div>
+            </div>
+            <div class="upage vertical-col panel" id="iluminacao" data-header="ilumi_header" data-footer="af-footer-1">
+                <figure class="figure-align">
+                    <img src="images/bulb.png">
+                    <figcaption data-position="bottom"></figcaption>
+                </figure>
+                <div class="table-thing with-label widget uib_w_7 d-margins" data-uib="app_framework/flip_switch" data-ver="1">
+                    <label class="narrow-control label-inline">Quarto #1</label>
+                    <div class="wide-control">
+                        <input type="checkbox" class="toggle" id="quarto1_switch">
+                        <label for="quarto1_switch" data-off="OFF" data-on="ON"><span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="table-thing with-label widget uib_w_8 d-margins" data-uib="app_framework/flip_switch" data-ver="1">
+                    <label class="narrow-control label-inline">Quarto #2</label>
+                    <div class="wide-control">
+                        <input type="checkbox" class="toggle" id="quarto2_switch">
+                        <label for="quarto2_switch" data-off="OFF" data-on="ON"><span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="widget uib_w_28 scale-image d-margins" data-uib="media/img" data-ver="0">
+
+                </div>
+            </div>
+            <div class="upage vertical-col panel" id="temperatura" data-header="temp_header" data-footer="af-footer-0">
+                
+                <div class="widget uib_w_31 scale-image d-margins" data-uib="media/img" data-ver="0">
+                    <figure class="figure-align">
+                        <img src="images/temperature.png" id="myImage">
+                        <figcaption data-position="bottom"></figcaption>
+                    </figure>
+                </div>
+                
+                <br>
+
+                <br><font face="verdana" color="black" size="3">Temperatura atual:</font>
+
+                <br>
+                <textarea id="valor" class="valor"></textarea>
+                <p></p>
+
+                <div class="widget uib_w_26 scale-image d-margins" data-uib="media/img" data-ver="0">
+
+                </div>
+                <div class="widget uib_w_27 scale-image d-margins" data-uib="media/img" data-ver="0">
+
+                </div>
+                <p><center><font size="5">Aquecedor</font><br></center></p>
+                <div class="button-grouped flex widget uib_w_32 d-margins" data-uib="app_framework/button_group" data-ver="1"><a class="button widget uib_w_33" data-uib="app_framework/button" data-ver="1" style="border-left-width: 1px; border-left-style: solid; border-left-color: rgb(102, 102, 102); border-top-left-radius: 6px; border-bottom-left-radius: 6px;"
+                    id="btn-on-temp" onclick="ChangeImageSrcOn()">On</a><a class="button widget uib_w_34" data-uib="app_framework/button" data-ver="1" id="btn-off-temp" onclick="ChangeImageSrcOff()">Off</a>
+                </div>
+
+                
+            </div>
+
+            <div class="upage vertical-col left panel" id="garagem" data-header="garage_switch" data-footer="af-footer-2">
+                <center>
+                    <br>
+                    <p><font color="black" size="5">Portão</font>
+                    </p>
+                </center>
+                <a class="button widget uib_w_16 d-margins icon right" data-uib="app_framework/button" data-ver="1" id="portao-btn"> Abrir/Fechar</a>
+                <div class="widget uib_w_24 scale-image d-margins" data-uib="media/img" data-ver="0">
+
+                </div>
+
+                <div class="widget uib_w_25 scale-image d-margins" data-uib="media/img" data-ver="0">
+                    <figure class="figure-align">
+                        <img src="images/garage_open-512.png">
+                        <figcaption data-position="bottom"></figcaption>
+                    </figure>
+                </div>
+            </div>
+
+            <div class="upage vertical-col panel" id="alarme" data-header="af-header-0" data-footer="af-footer-4">
+                <div class="widget uib_w_23 scale-image d-margins" data-uib="media/img" data-ver="0">
+                    <figure class="figure-align">
+                        <img src="images/blue-edged-shield-hi.png">
+
+                        <figcaption data-position="bottom"></figcaption>
+                    </figure>
+                </div>
+                <p><font face="verdana" color="black" size="3">Status do alarme:</font>
+                </p>
+                <textarea id="alarme-status" class="alarme-status"></textarea>
+
+                <div class="table-thing with-label widget uib_w_19 d-margins" data-uib="app_framework/flip_switch" data-ver="1">
+                    <label class="narrow-control label-inline">Alarme</label>
+                    <div class="wide-control">
+                        <input type="checkbox" class="toggle" id="alarme-swt">
+                        <label for="alarme-swt" data-off="OFF" data-on="ON"><span></span>
+                        </label>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <footer class="wrap-element uib_w_18" data-uib="app_framework/footer" data-ver="1" id="af-footer-4"></footer>
+
+        <footer class="wrap-element uib_w_15" data-uib="app_framework/footer" data-ver="1" id="af-footer-3"></footer>
+        <footer class="wrap-element uib_w_14" data-uib="app_framework/footer" data-ver="1" id="af-footer-2"></footer>
+        <footer class="wrap-element uib_w_11" data-uib="app_framework/footer" data-ver="1" id="af-footer-1"></footer>
+        <footer class="wrap-element uib_w_10" data-uib="app_framework/footer" data-ver="1" id="af-footer-0"></footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<!--        <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>-->
+        <script src="/socket.io/socket.io.js"></script>
+        
+        
+        
+<!-- script para implementaçao das funções em java script -->
+        
+        <script type="text/javascript">
+          
+            
+            //função liga/desliga aquecedor//    
+            
+                    function ChangeImageSrcOn(){
+                       var img = document.getElementById('myImage'); 
+                       img.src = "images/temperature2.png";    
+                    }
+                    
+                    function ChangeImageSrcOff(){
+                       var img = document.getElementById('myImage'); 
+                       img.src = "images/temperature.png";    
+                    }
+            
+            
+            //função para conectar-se ao server//
+            $(function(){
+                    var socket = io.connect("http://192.168.0.100:4000");
+                    
+                    socket.on('connected',function(){
+                       
+                        navigator.notification.alert(
+                            "Great Job!",  // message
+                            "",
+                            'You are Connected!',            // title
+                            'Ok'                  // buttonName
+                        );
+                    });
+                    
+                
+            //função para mostrar a temperatura na caixa de texto//
+                
+                    socket.on('vaca',function(data){
+                        var newItem = data;
+                        $('#valor').empty();
+                        $('#valor').append(' ' + newItem);
+                    });             
+                    
+            //função para ligar e desligar os leds dos quartos//      
+                
+                    $("#quarto1_switch").change(function(){
+                        socket.emit("state1Changed", this.checked);
+                    });
+                    
+                    $("#quarto2_switch").change(function(){
+                        socket.emit("state2Changed", this.checked);
+                    });
+            
+            //função para abrir e fechar o portão (motor de passo)//
+                
+                    $("#portao-btn").click(function(){
+                        socket.emit("portao");
+                    });
+                
+            //função alarme
+                
+                    $("#alarme-swt").change(function(){
+                        liga=this.checked;
+                        socket.emit("alarme", this.checked);
+                        
+                    });
+                
+                    socket.on('alarmeon',function(){
+                        
+                        $('#alarme-status').empty();
+                        $('#alarme-status').append('***Alarme Ativado*** ---> Sua casa está segura!');
+                    });        
+                
+                    socket.on('alarmeoff',function(){
+                        
+                        $('#alarme-status').empty();
+                        $('#alarme-status').append('***Alarme Desativado*** ---> Sua casa está desprotegida!');
+                    });        
+                    
+                    socket.on('touro',function(data2){
+                        var newItem2 = data2;
+                        if(liga==true && newItem2<18){
+                        alert("Sua casa foi invadida!!");
+                        $('#alarme-status').empty();
+                        $('#alarme-status').append('***Alarme Disparado*** ---> Sua casa está em perigo!');
+                        }
+                    }); 
+                });
+        </script>
+
+    </body>
+
+</html>
